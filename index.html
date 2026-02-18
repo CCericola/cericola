@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Christopher Cericola — Engineering Leader</title>
+
+  <!-- Google Fonts: Playfair Display (editorial serif) + DM Sans (clean modern body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* =============================================
+       CSS CUSTOM PROPERTIES (Design Tokens)
+       All colors, spacing, and typography scale
+       defined here for easy theming.
+    ============================================= */
+    :root {
+      --bg-deep:      #0d1117;   /* darkest background */
+      --bg-card:      #161b22;   /* card / section background */
+      --bg-line:      #21262d;   /* subtle divider color */
+      --accent:       #e8a045;   /* warm amber — distinctive, non-purple */
+      --accent-dim:   #c4822a;
+      --text-primary: #e6edf3;
+      --text-muted:   #8b949e;
+      --text-dim:     #484f58;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+      --max-width:    860px;
+      --radius:       6px;
+      --transition:   0.25s ease;
+    }
+
+    /* =============================================
+       RESET & BASE
+    ============================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 300;
+      color: var(--text-primary);
+      line-height: 1.7;
+      min-height: 100vh;
+      /* Layered: subtle noise grain over dark background for depth */
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"),
+        var(--bg-deep);
+    }
+
+    /* =============================================
+       LAYOUT WRAPPER
+    ============================================= */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* =============================================
+       HERO / HEADER
+    ============================================= */
+    .hero {
+      padding: 80px 0 64px;
+      border-bottom: 1px solid var(--bg-line);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative amber accent bar on the left edge of the page */
+    .hero::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10%;
+      height: 60%;
+      width: 3px;
+      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+      border-radius: 2px;
+    }
+
+    /* Each hero element is animated in sequence using animation-delay.
+       They start invisible (opacity:0) and slide up (translateY) into place. */
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.6s ease 0.1s forwards;
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 7vw, 5rem); /* fluid responsive type sizing */
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.6s ease 0.2s forwards;
+    }
+
+    /* Italic word in the name uses the accent color */
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      font-weight: 700;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.6s ease 0.3s forwards;
+    }
+
+    .hero-summary {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 620px;
+      line-height: 1.8;
+      margin-bottom: 36px;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.6s ease 0.4s forwards;
+    }
+
+    /* Row of contact / social link buttons */
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.6s ease 0.5s forwards;
+    }
+
+    .hero-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      border: 1px solid var(--bg-line);
+      padding: 8px 16px;
+      border-radius: var(--radius);
+      transition: color var(--transition), border-color var(--transition), background var(--transition);
+    }
+
+    .hero-links a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(232, 160, 69, 0.06);
+    }
+
+    .hero-links a svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    /* =============================================
+       SECTION SHARED STYLES
+    ============================================= */
+    .section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--bg-line);
+    }
+
+    .section:last-child { border-bottom: none; }
+
+    /* Small all-caps amber label above each section's content */
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+    }
+
+    /* =============================================
+       EXPERIENCE ENTRIES
+       Two-column grid: left = date, right = content.
+       Collapses to single column on mobile.
+    ============================================= */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .exp-entry {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 0 28px;
+    }
+
+    .exp-date {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      padding-top: 4px;
+      white-space: nowrap;
+    }
+
+    .exp-company {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .exp-role {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 10px;
+      letter-spacing: 0.03em;
+    }
+
+    .exp-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* Pill-shaped tags highlighting key technologies / themes per role */
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(232, 160, 69, 0.1);
+      color: var(--accent-dim);
+      border: 1px solid rgba(232, 160, 69, 0.2);
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+
+    /* =============================================
+       SKILLS GRID
+       Auto-fills columns based on available space.
+    ============================================= */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .skill-item {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-line);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      transition: border-color var(--transition), color var(--transition);
+    }
+
+    .skill-item:hover {
+      border-color: var(--accent);
+      color: var(--text-primary);
+    }
+
+    /* =============================================
+       SIDE PROJECTS
+    ============================================= */
+    .side-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .side-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-line);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: border-color var(--transition);
+    }
+
+    .side-card:hover { border-color: var(--accent); }
+
+    .side-card-icon {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+    }
+
+    .side-card h3 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+
+    .side-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .side-card a {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+    }
+
+    .side-card a:hover { text-decoration: underline; }
+
+    /* =============================================
+       EDUCATION
+    ============================================= */
+    .edu-entry {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .edu-school {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .edu-degree {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .edu-date {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      padding-top: 4px;
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    .footer {
+      padding: 32px 0;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+    }
+
+    /* =============================================
+       KEYFRAME ANIMATIONS
+       Used for the staggered hero text reveal on load.
+    ============================================= */
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =============================================
+       RESPONSIVE — Mobile (< 640px)
+    ============================================= */
+    @media (max-width: 640px) {
+      /* Collapse the date + content two-column layout to single column */
+      .exp-entry {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .exp-date { font-size: 0.72rem; }
+
+      /* Stack side project cards vertically */
+      .side-grid { grid-template-columns: 1fr; }
+
+      .hero { padding: 48px 0 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================
+       HERO — Name, title, summary, contact links
+  ============================================= -->
+  <header class="hero">
+    <div class="container">
+      <p class="hero-eyebrow">Engineering Leader · Ridgefield, WA</p>
+
+      <h1 class="hero-name">
+        Christopher<br /><em>Cericola</em>
+      </h1>
+
+      <p class="hero-title">
+        Building High-Performing Teams · Outcomes Over Output
+      </p>
+
+      <p class="hero-summary">
+        Engineering leader with a builder's mindset. I bridge hands-on technical work
+        and strategic leadership — growing teams, shipping meaningful products, and
+        staying deeply connected to the craft of building software.
+      </p>
+
+      <!-- Contact / social links with inline SVG icons (no external icon library needed) -->
+      <div class="hero-links">
+
+        <a href="mailto:ccericola@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+          ccericola@gmail.com
+        </a>
+
+        <a href="https://www.linkedin.com/in/ccericola" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+          LinkedIn
+        </a>
+
+        <a href="https://cericola.net" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          cericola.net
+        </a>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =============================================
+         EXPERIENCE
+    ============================================= -->
+    <section class="section">
+      <div class="container">
+        <p class="section-label">Experience</p>
+
+        <div class="exp-list">
+
+          <div class="exp-entry">
+            <span class="exp-date">Jan 2025 — Present</span>
+            <div>
+              <p class="exp-company">CD Baby</p>
+              <p class="exp-role">Senior Vice President of Engineering</p>
+              <p class="exp-desc">
+                Led a platform re-envisioning effort spanning internal and external integrations
+                during a period of significant organizational transition. Brought in a near-shore
+                partner — defining the statement of work, negotiating terms, and managing the
+                ongoing relationship. Migrated deployments from bare metal to containers, improving
+                stability and engineer onboarding. Drove the CI/CD migration from Azure DevOps to GitHub.
+              </p>
+              <div class="exp-tags">
+                <span class="tag">Containers</span>
+                <span class="tag">GitHub CI/CD</span>
+                <span class="tag">Near-Shore</span>
+                <span class="tag">Platform Architecture</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-entry">
+            <span class="exp-date">Aug 2020 — Apr 2025</span>
+            <div>
+              <p class="exp-company">CD Baby</p>
+              <p class="exp-role">Vice President of Engineering</p>
+              <p class="exp-desc">
+                Expanded scope to lead engineering across three additional brands: Hearnow, Show.co,
+                and Soundrop. Owned the full engineering budget and staffing, drove cross-team
+                collaboration to share tooling and simplify tech stacks. Launched high-value partner
+                integrations including mastering and video creation. Began integrations with sister
+                company Fuga to unify processes.
+              </p>
+              <div class="exp-tags">
+                <span class="tag">Multi-Brand Leadership</span>
+                <span class="tag">Budget Ownership</span>
+                <span class="tag">Partner Integrations</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-entry">
+            <span class="exp-date">Aug 2015 — Aug 2020</span>
+            <div>
+              <p class="exp-company">CD Baby</p>
+              <p class="exp-role">Director of Web Development</p>
+              <p class="exp-desc">
+                Managed four distinct teams across two brands, growing the organization from ten
+                to fourteen engineers. Partnered with a local code school to run an internship
+                program — two of four interns converted to full-time. Led the architectural plan
+                to decompose a monolith into APIs and microservices, and migrated the marketing
+                site to WPEngine, freeing the UI team from routine marketing work.
+              </p>
+              <div class="exp-tags">
+                <span class="tag">Microservices</span>
+                <span class="tag">Mentorship</span>
+                <span class="tag">Scrum</span>
+                <span class="tag">Monolith Decomposition</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-entry">
+            <span class="exp-date">Feb 2009 — Aug 2015</span>
+            <div>
+              <p class="exp-company">CD Baby</p>
+              <p class="exp-role">Manager of Web Development</p>
+              <p class="exp-desc">
+                Grew the team from four to ten people across three work groups (UI, Back-End, QA).
+                Relaunched the CD Baby platform in nine months using a scalable, load-balanced
+                architecture. Architected a distribution system processing thousands of deliveries
+                daily — peaking at 500k deliveries in 30 days to a single partner. Founded and
+                grew the QA practice. Led the launch of BookBaby and its book distribution system.
+              </p>
+              <div class="exp-tags">
+                <span class="tag">High-Scale Distribution</span>
+                <span class="tag">QA Practice</span>
+                <span class="tag">BookBaby</span>
+                <span class="tag">Git / Azure DevOps</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-entry">
+            <span class="exp-date">Jan 2007 — Feb 2009</span>
+            <div>
+              <p class="exp-company">Disc Makers</p>
+              <p class="exp-role">Lead Application Developer</p>
+              <p class="exp-desc">
+                Progressed from junior developer to lead, defining code standards, workflow, and
+                development philosophy. Designed and built a web-based CD/DVD template designer
+                in C#, JavaScript, and Ajax. Rebuilt core class libraries using a custom ORM,
+                reducing the codebase by over 25%.
+              </p>
+              <div class="exp-tags">
+                <span class="tag">C#</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">ORM Design</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-entry">
+            <span class="exp-date">Oct 2002 — Dec 2006</span>
+            <div>
+              <p class="exp-company">SNIP</p>
+              <p class="exp-role">Applications Developer</p>
+              <p class="exp-desc">
+                Developed internal applications for a regional ISP transitioning into telecom —
+                including a client management app migrated from VB6 to C#, a workflow management
+                system, and a SQL-powered Excel reporting engine.
+              </p>
+              <div class="exp-tags">
+                <span class="tag">C#</span>
+                <span class="tag">SQL Server</span>
+                <span class="tag">VB6 Migration</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+         SKILLS
+    ============================================= -->
+    <section class="section">
+      <div class="container">
+        <p class="section-label">Skills &amp; Expertise</p>
+        <div class="skills-grid">
+          <div class="skill-item">Technical Leadership</div>
+          <div class="skill-item">Engineering Strategy</div>
+          <div class="skill-item">Team Building &amp; Mentorship</div>
+          <div class="skill-item">C# / .NET</div>
+          <div class="skill-item">JavaScript / TypeScript</div>
+          <div class="skill-item">Microservices &amp; APIs</div>
+          <div class="skill-item">CI/CD Pipelines</div>
+          <div class="skill-item">Cloud &amp; Containers</div>
+          <div class="skill-item">Budget &amp; Resource Mgmt</div>
+          <div class="skill-item">Vendor &amp; Partner Mgmt</div>
+          <div class="skill-item">Agile / Scrum</div>
+          <div class="skill-item">AI-Assisted Development</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+         SIDE PROJECTS
+    ============================================= -->
+    <section class="section">
+      <div class="container">
+        <p class="section-label">Beyond the Day Job</p>
+        <div class="side-grid">
+
+          <div class="side-card">
+            <div class="side-card-icon">🌲</div>
+            <h3>Scout Tree Recycling Coordinator</h3>
+            <p>
+              Organizes 24 scouting units across 61 areas in Clark County and Longview, WA
+              for an annual Christmas tree recycling event. Built and maintains
+              ScoutTreeRecycling.com — an Azure-hosted app with Google Maps integration
+              and SQL Server backend serving 1,000+ residents with 5,000+ requests per season
+              and zero downtime.
+            </p>
+            <a href="https://ScoutTreeRecycling.com" target="_blank" rel="noopener">
+              ScoutTreeRecycling.com →
+            </a>
+          </div>
+
+          <div class="side-card">
+            <div class="side-card-icon">🪵</div>
+            <h3>Analog Geeks Woodworking, LLC</h3>
+            <p>
+              Owner of a small artisan woodworking shop crafting functional and nerdy
+              handmade items — kitchen mallets, cutting boards, and more. Where software
+              precision meets the satisfaction of making something real with your hands.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+         EDUCATION
+    ============================================= -->
+    <section class="section">
+      <div class="container">
+        <p class="section-label">Education</p>
+        <div class="edu-entry">
+          <div>
+            <p class="edu-school">Camden County College</p>
+            <p class="edu-degree">Associate of Science, Mathematics</p>
+          </div>
+          <span class="edu-date">2003 — 2006</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Christopher Cericola &nbsp;·&nbsp; Ridgefield, Washington</p>
+    </div>
+  </footer>
+
+</body>
+</html>
