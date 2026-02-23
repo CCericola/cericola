@@ -245,6 +245,38 @@
       line-height: 1.75;
     }
 
+    /* Bullet list for experience entries.
+       Uses a custom amber square marker instead of the default browser bullet. */
+    .exp-bullets {
+      list-style: none;          /* remove default browser bullets */
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;                  /* breathing room between each bullet */
+    }
+
+    .exp-bullets li {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      padding-left: 18px;        /* indent text to clear the custom marker */
+      position: relative;
+    }
+
+    /* The amber square marker — positioned absolutely to the left of the text */
+    .exp-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.6em;                /* vertically center against the first line */
+      width: 5px;
+      height: 5px;
+      background: var(--accent);
+      border-radius: 1px;        /* slight rounding for a softer square */
+      opacity: 0.7;
+    }
+
     /* Pill-shaped tags highlighting key technologies / themes per role */
     .exp-tags {
       display: flex;
@@ -472,13 +504,21 @@
             <div>
               <p class="exp-company">CD Baby</p>
               <p class="exp-role">Senior Vice President of Engineering</p>
-              <p class="exp-desc">
-                Led a platform re-envisioning effort spanning internal and external integrations
-                during a period of significant organizational transition. Brought in a near-shore
-                partner — defining the statement of work, negotiating terms, and managing the
-                ongoing relationship. Migrated deployments from bare metal to containers, improving
-                stability and engineer onboarding. Drove the CI/CD migration from Azure DevOps to GitHub.
-              </p>
+              <ul class="exp-bullets">
+                <li>
+                  During a period of organization transition, ran the product team for six months while recruiting for a new product leader. This included
+                  managing the team's roadmap, prioritization, and day-to-day work while ensuring alignment with the engineering team and overall company goals.
+                </li>
+                <li>
+                  Led the development and execution of a rebuild of the CDBaby platform with a strong focus on modernization. This included defining the architecture, technology stack, 
+                  and development process to ensure a scalable and maintainable platform for the future. This involved migrarting fro bare metal to containers and moving our CI/CD pipelines
+                  from Azure DevOps to GitHub.
+                </li>
+                <li>
+                  Migrated deployments from bare metal to containers, improving stability and engineer onboarding.
+                </li>
+                <li>Drove the CI/CD migration from Azure DevOps to GitHub.</li>
+              </ul>              
               <div class="exp-tags">
                 <span class="tag">Executive Leadership</span>
                 <span class="tag">Cross-functional Alignment</span>
@@ -494,16 +534,31 @@
               <p class="exp-company">CD Baby</p>
               <p class="exp-role">Vice President of Engineering</p>
               <p class="exp-desc">
-                Expanded scope to lead engineering across three additional brands: Hearnow, Show.co,
-                and Soundrop. Owned the full engineering budget and staffing, drove cross-team
-                collaboration to share tooling and simplify tech stacks. Launched high-value partner
-                integrations including mastering and video creation. Began integrations with sister
-                company Fuga to unify processes.
+                Led the engineering team as a whole for four distinct brands with a variety of technologies and team sizes continuing the focus on cross-team collaboration and unifying 
+                work.
               </p>
+              <ul class="exp-bullets">
+                <li>
+                  Augmented staff with near-shore contractors to help with capacity and specific skill needs. This included defining the statement of work, negotiating terms, 
+                  and managing the ongoing relationship.
+                </li>
+                <li>
+                  Responsible for the entire engineering budget, staffing, and resourcing. Strong focus on meeting budget goals through increased growth and cost reduction. 
+                </li>
+                <li>
+                  Stared the intergration with our sister company, Fuga, to simplify CDBaby's workload while taking advantages of best in class services provided by Fuga.
+                </li>
+                <li>
+                   Launched multiple high-value partner integrations including mastering and video creation increasing the value of our service to customers and providing new revenue streams.
+                </li>
+                <li>
+                  Became one of two "Cookie Czars" for the company, ensuring our adhereance with privacy laws both domestically and internationally.
+                </li>
+              </ul>
               <div class="exp-tags">
                 <span class="tag">Multi-Brand Leadership</span>
                 <span class="tag">Remote Team Management</span>
-                <span class="tag">Performance Management</span>
+                <span class="tag">Planning Budgeting & Forecasting</span>
                 <span class="tag">Budgeting & Forecasting</span>
               </div>
             </div>
@@ -515,18 +570,36 @@
               <p class="exp-company">CD Baby</p>
               <p class="exp-role">Director of Web Development</p>
               <p class="exp-desc">
-                Managed four distinct teams across two brands, growing the organization from ten
-                to fourteen engineers. Partnered with a local code school to run an internship
-                program — two of four interns converted to full-time. Led the architectural plan
-                to decompose a monolith into APIs and microservices, and migrated the marketing
-                site to WPEngine, freeing the UI team from routine marketing work.
+                Focused primarily on the over-arching goals of the engineering team while mentoring leaders across multiple teams.
               </p>
+              <ul class="exp-bullets">
+                <li>
+                  Managed four distinct teams over a span of two different brands focusing on cross-team collaboration and knowledge sharing
+                </li>
+                <li>
+                  Built a plan to break apart the monolith structure of the CD Baby application and begin to separate it into a mixture of APIs, microservices, 
+                  and smaller apps to reduce complexity.
+                </li>
+                <li>
+                  As part of the decoupling, led the migration of moving the marketing site from an internal app to WPEngine. 
+                  The outcome was reduced time and effort for marketing to make changes while removing large amounts of work from the engineering UI team
+                </li>
+                <li>
+                  Partnered with a local code school, Epicodus, to start an internship program at CDBaby. During this time, we took on six different interns, two of which converted
+                  to full time employees.
+                </li>
+                <li>
+                  Operated as the scrum champion during this time helping guide the refinement, planning, and review process.
+                </li>
+              </ul>
               <div class="exp-tags">
                 <span class="tag">Microservices</span>
                 <span class="tag">Mentorship</span>
                 <span class="tag">Scalable Architecture</span>
                 <span class="tag">Technical Leadership</span>
                 <span class="tag">Performance Management</span>
+                <span class="tag">Agile methodologies and scrum</span>
+                <span class="tag">Budget management</span>
               </div>
             </div>
           </div>
@@ -537,17 +610,50 @@
               <p class="exp-company">CD Baby</p>
               <p class="exp-role">Manager of Web Development</p>
               <p class="exp-desc">
-                Grew the team from four to ten people across three work groups (UI, Back-End, QA).
-                Relaunched the CD Baby platform in nine months using a scalable, load-balanced
-                architecture. Architected a distribution system processing thousands of deliveries
-                daily — peaking at 500k deliveries in 30 days to a single partner. Founded and
-                grew the QA practice. Led the launch of BookBaby and its book distribution system.
+                While still under the same parent company moved from the Discmakers team to the CDBaby team to manage a newly formed team focused on the CDBaby platform migrartion. This 
+                migration included the customer facing website and storefront and the musician application for signing up to sell music direct to fans and through streaming and download
+                services. This migration was a critical part of the overall strategy to modernize the platform and set the stage for future growth and scalability.
               </p>
+              <ul class="exp-bullets">
+                <li>Relaunched the CD Baby platform in nine months. Designed and implemented an architecture that was scalable and highly available utilizing load balancing to distribute the load.</li>
+                <li>
+                  Architected and developed a delivery system for delivering audio, image, and metadata assets to partners, such as Spotify, that ran off an automated queuing system. It
+                  was developed to be an extendable platform and included centralized management. This system processes thousands of deliveries a day, and did a peak delivery performance of 
+                  500k deliveries in 30 days to a single partner.</li>
+                <li>
+                  Created the first QA group within CD Baby with a single engineer and grew it into a team of three people during the first five years. By involving QA in the development lifecycle, 
+                  it improved overall quality and reduced defects in production. This team, under my leadership, built manual and automated testing processes that caught defects early and allowed for 
+                  faster releases with confidence.                   
+                </li>
+                <li>
+                  Created the initial on-call rotation and process for the web development team. This included defining standard work for known issues, esclation guides for complex issues, and an equitable
+                  distribution of the workload.
+                </li>
+                <li>
+                  Led the development efforts on launching BookBaby, and built its distribution system, adapted from CD Baby's audio distribution system, to send clients's books to e-book stores like 
+                  Amazon Kindle and Apple Books.
+                </li>
+                <li>
+                  Hired multiple engineers from within CDBaby identifying people who had core skills that could be applied to the engineering work, training them, and helping them grow into their new career.
+                  This was a highly successful way to grow talent and also helped build a strong culture of learning and development within the organization. Three of the people hired this way have continued
+                  to grow in their career into senior level roles in the team.
+                </li>
+                <li>
+                  Planned and led the migration from using TFVC with an on-prem TFS server to git in Azure DevOps including providing training to the team on best usage patterns and setting the groundwork for
+                  future CI/CD toolings.
+                </li>
+                <li>
+                  Managed weekly 1:1s with all employees helping set expectations and goals. 
+                </li>
+              </ul>               
               <div class="exp-tags">
                 <span class="tag">Continuous Integration and Continuous Delivery (CI/CD)</span>
                 <span class="tag">Agile Methodologies</span>
                 <span class="tag">Technical Leadership</span>
                 <span class="tag">Interview Management</span>
+                <span class="tag">Git</span>
+                <span class="tag">Azure Devops / Azure Cloud</span>
+                <span class="tag">Mentoring and Career Development</span>
               </div>
             </div>
           </div>
@@ -559,14 +665,23 @@
               <p class="exp-role">Lead Application Developer</p>
               <p class="exp-desc">
                 Progressed from junior developer to lead, defining code standards, workflow, and
-                development philosophy. Designed and built a web-based CD/DVD template designer
-                in C#, JavaScript, and Ajax. Rebuilt core class libraries using a custom ORM,
-                reducing the codebase by over 25%.
+                development philosophy.
               </p>
+              <ul class="exp-bullets">
+                <li>Built the web-based CD/DVD template designer in C#, JavaScript, and Ajax. This tool provided users a WSIWYG experience for designing cover and disc artwork.</li>
+                <li>Rebuilt the core class libraries using a custom ORM, reducing the codebase by over 25%.</li>
+                <li>Post migration of CDBaby, lead the development efforts for the CDBaby platform converting it into a more modern stack and UI while integrating it with the existing
+                  Microsoft Dynamics AX 4.0 platform.</li>
+                <li> Defined code standards and best practices to help promote uniformity in code.
+                   These standards improved performance by reducing the complexity in debugging and understanding of what people's intent were. c</li>
+                <li>Interviewed candidates, and helped increase the team from four engineers to six.</li>
+                <li>Mentored incoming engineers and interns in code practices, problem solving, and debugging.</li>
+              </ul> 
               <div class="exp-tags">
                 <span class="tag">C#</span>
                 <span class="tag">JavaScript</span>
                 <span class="tag">ORM Design</span>
+                <span class="tag">Leadership</span>
               </div>
             </div>
           </div>
@@ -577,10 +692,14 @@
               <p class="exp-company">SNIP</p>
               <p class="exp-role">Applications Developer</p>
               <p class="exp-desc">
-                Developed internal applications for a regional ISP transitioning into telecom —
+                Developed internal applications for a regional ISP expanding into telecom -
                 including a client management app migrated from VB6 to C#, a workflow management
                 system, and a SQL-powered Excel reporting engine.
               </p>
+              <ul class="exp-bullets">
+                <li>Maintained the existing VB6 platform while helping architect and develop the new C# platform that would combine the two sides of the business.</li>
+                <li>Developed tools to import telecom EDI files and process them into a billing engine.</li>
+              </ul> 
               <div class="exp-tags">
                 <span class="tag">C#</span>
                 <span class="tag">SQL Server</span>
@@ -607,8 +726,8 @@
           <div class="skill-item">Microservices &amp; APIs</div>
           <div class="skill-item">CI/CD Pipelines</div>
           <div class="skill-item">Cloud &amp; Containers</div>
-          <div class="skill-item">Budget &amp; Resource Mgmt</div>
-          <div class="skill-item">Vendor &amp; Partner Mgmt</div>
+          <div class="skill-item">Budget &amp; Resource Management</div>
+          <div class="skill-item">Vendor &amp; Partner Management</div>
           <div class="skill-item">Agile / Scrum</div>
           <div class="skill-item">AI-Assisted Development</div>
         </div>
@@ -628,13 +747,33 @@
             <h3>Scout Tree Recycling Coordinator</h3>
             <p>
               Organizes 24 scouting units across 61 areas in Clark County and Longview, WA
-              for an annual Christmas tree recycling event. Built and maintains
-              ScoutTreeRecycling.com — an Azure-hosted app with Google Maps integration
-              and SQL Server backend serving 1,000+ residents with 5,000+ requests per season
-              and zero downtime.
+              for an annual Scouting America Christmas tree recycling event keeping trees out of landfills. Builds and maintains
+              ScoutTreeRecycling.com — an app serving 1,000+ residents per season.
             </p>
+            <ul class="exp-bullets">
+                <li>Maintained no downtime during the tree recycling season since its inception in 2023.</li>
+                <li>Reimagined an old manual process of connecting residents with units into a self-service focused experience.</li>
+                <li>Developed in C#, .net core, and sql server. Brings together google maps integration and geolocation tools.</li>
+            </ul> 
             <a href="https://ScoutTreeRecycling.com" target="_blank" rel="noopener">
               ScoutTreeRecycling.com →
+            </a>
+          </div>
+
+          <div class="side-card">
+            <div class="side-card-icon">🎲</div>
+            <h3>TableTop Trades</h3>
+            <p>
+                A platform for organizing tabletop trades in the board game hobby. Expected to enter public beta in March of 2026, the
+                platform is built my a small team of three with the hopes of demystifying the math trade process.
+            </p>
+            <ul class="exp-bullets">
+                <li>Utilizing modern web development practices, frameworks, and vibe-coding with Claude to accelerate development..</li>
+                <li>Built on C#, .net core, sql server, and azure containers to provide a scalable, lightweight, and cost-effective platform.</li>
+                <li>Developed with distinct production and development CI/CD pipelines.</li>
+            </ul> 
+            <a href="https://tabletoptrades.com/" target="_blank" rel="noopener">
+              TableTopTrades.com →
             </a>
           </div>
 
@@ -645,6 +784,15 @@
               Owner of a small artisan woodworking shop crafting functional and nerdy
               handmade items — kitchen mallets, cutting boards, and more. Where software
               precision meets the satisfaction of making something real with your hands.
+            </p>
+          </div>
+
+                    <div class="side-card">
+            <div class="side-card-icon">⚜</div>
+            <h3>Troop 479/5479 of Vancouver, WA</h3>
+            <p>
+              Volunteering as an assistant scoutmaster since 2022 for a linked boy and girl troop in the Vancouver, WA area. Supporting the growth and development of youth through mentorship, 
+              outdoor adventures, and community service. In addition, I serve as a merit badge counselor for programming, game design, chess, and woodworking merit badges.
             </p>
           </div>
 
