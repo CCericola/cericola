@@ -373,8 +373,119 @@
     .side-card a:hover { text-decoration: underline; }
 
     /* =============================================
-       EDUCATION
+       AWARDS & RECOGNITION
+       Two-column layout: award on left, testimonial
+       pull quote on right.
     ============================================= */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* Individual award entry — icon + text side by side */
+    .award-entry {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--bg-card);
+      border: 1px solid var(--bg-line);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: border-color var(--transition);
+    }
+
+    .award-entry:hover {
+      border-color: var(--accent);
+    }
+
+    .award-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .award-name {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .award-org {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .award-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* Testimonial pull quote — large opening quote mark,
+       italic text, attributed at the bottom */
+    .testimonial {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-line);
+      border-left: 3px solid var(--accent); /* accent left border for visual weight */
+      border-radius: var(--radius);
+      padding: 24px;
+      position: relative;
+    }
+
+    /* Large decorative opening quotation mark */
+    .testimonial::before {
+      content: '\201C';            /* left double quotation mark */
+      font-family: var(--font-display);
+      font-size: 4rem;
+      color: var(--accent);
+      opacity: 0.25;
+      position: absolute;
+      top: 8px;
+      left: 16px;
+      line-height: 1;
+    }
+
+    .testimonial-quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      padding-top: 20px;   /* clear the large decorative quote mark */
+    }
+
+    .testimonial-attr {
+      margin-top: 16px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      display: block;
+    }
+
+    /* Small italic note reminding to replace the sample */
+    .testimonial-note {
+      display: block;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--text-dim);
+      margin-top: 4px;
+      opacity: 0.7;
+    }
+
+    /* Collapse to single column on mobile */
+    @media (max-width: 640px) {
+      .awards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
     .edu-entry {
       display: flex;
       justify-content: space-between;
@@ -440,6 +551,122 @@
 
       .hero { padding: 48px 0 40px; }
     }
+
+    /* =============================================
+      PRINT / SAVE AS PDF STYLES
+      Triggered automatically by browser when
+      printing or using "Save as PDF".
+      Overrides the dark theme with a clean
+      white/black layout suitable for paper.
+    ============================================= */
+    @media print {
+
+      /* Hide the print button itself when printing */
+      .hero-links a[href="javascript:window.print()"] {
+        display: none;
+      }
+
+      /* White background, black text throughout */
+      body {
+        background: #ffffff !important;
+        color: #111111 !important;
+      }
+
+      /* Override all CSS variables to light equivalents */
+      :root {
+        --bg-deep:      #ffffff;
+        --bg-card:      #f5f5f5;
+        --bg-line:      #dddddd;
+        --accent:       #b07020;   /* darker amber so it's legible on white */
+        --accent-dim:   #8a5510;
+        --text-primary: #111111;
+        --text-muted:   #333333;
+        --text-dim:     #666666;
+      }
+
+      /* Remove background noise texture */
+      body {
+        background-image: none !important;
+      }
+
+      /* Remove the decorative amber left bar */
+      .hero::before {
+        display: none;
+      }
+
+      /* Tighten up hero padding for print */
+      .hero {
+        padding: 32px 0 24px;
+      }
+
+      /* Disable all animations — print captures the final state */
+      * {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      /* Remove card backgrounds and borders on side projects */
+      .side-card {
+        border: 1px solid #dddddd;
+        background: #ffffff;
+      }
+
+      /* Remove skill item backgrounds */
+      .skill-item {
+        background: #ffffff;
+        border: 1px solid #dddddd;
+        color: #333333;
+      }
+
+      /* Remove tag backgrounds, use a simple border instead */
+      .tag {
+        background: transparent;
+        border: 1px solid #b07020;
+        color: #8a5510;
+      }
+
+      /* Avoid page breaks inside side project cards */
+      .side-card {
+        break-inside: avoid;
+      }
+
+      /* Force the experience entry grid to behave in print.
+        Without this, the two-column grid can misplace child elements. */
+      .exp-entry {
+        display: block;
+      }
+
+      /* Render the date inline above the content rather than in a separate column */
+      .exp-date {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      /* Add breathing room between experience entries in print */
+      .exp-list {
+        gap: 0;
+      }
+
+      .exp-entry + .exp-entry {
+        margin-top: 24px;
+      }
+
+      /* Ensure tags sit flush below the bullets with no extra space */
+      .exp-tags {
+        margin-top: 8px;
+      }     
+      
+      /* Force bullet markers to show in print.
+      Browsers strip CSS backgrounds by default, so we switch
+      to a border-based square that always renders. */
+      .exp-bullets li::before {
+        background: transparent;
+        border: 2px solid #b07020;  /* matches the darkened amber used for print */
+        width: 6px;
+        height: 6px;
+      }
+    }    
   </style>
 </head>
 <body>
@@ -452,7 +679,7 @@
       <p class="hero-eyebrow">Engineering Leader · Ridgefield, WA</p>
 
       <h1 class="hero-name">
-        Christopher<br /><em>Cericola</em>
+        Christopher Cericola
       </h1>
 
       <p class="hero-title">
@@ -484,6 +711,15 @@
           </svg>
           LinkedIn
         </a>
+
+        <a href="javascript:window.print()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 6 2 18 2 18 9"/>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+            <rect x="6" y="14" width="12" height="8"/>
+          </svg>
+          Print / Save PDF
+        </a>      
       </div>
     </div>
   </header>
@@ -504,6 +740,10 @@
             <div>
               <p class="exp-company">CD Baby</p>
               <p class="exp-role">Senior Vice President of Engineering</p>
+              <p class="exp-desc">
+                  Led engineering at the senior leadership level through a period of transition, driving platform modernization, expanding the team with near-shore partners, and setting the 
+                  technical direction for the next generation of the CD Baby platform.
+              </p>
               <ul class="exp-bullets">
                 <li>
                   During a period of organization transition, ran the product team for six months while recruiting for a new product leader. This included
@@ -513,9 +753,6 @@
                   Led the development and execution of a rebuild of the CDBaby platform with a strong focus on modernization. This included defining the architecture, technology stack, 
                   and development process to ensure a scalable and maintainable platform for the future. This involved migrating from bare metal to containers and moving our CI/CD pipelines
                   from Azure DevOps to GitHub.
-                </li>
-                <li>
-                  Migrated deployments from bare metal to containers, improving stability and engineer onboarding.
                 </li>
               </ul>              
               <div class="exp-tags">
@@ -533,8 +770,8 @@
               <p class="exp-company">CD Baby</p>
               <p class="exp-role">Vice President of Engineering</p>
               <p class="exp-desc">
-                Led the engineering team as a whole for four distinct brands with a variety of technologies and team sizes continuing the focus on cross-team collaboration and unifying 
-                work.
+                Took on expanded ownership across four distinct brands — CD Baby, Hearnow, Show.co, and Soundrop — leading engineering teams of varying sizes and technology stacks with a continued
+                focus on cross-team collaboration.
               </p>
               <ul class="exp-bullets">
                 <li>
@@ -545,7 +782,7 @@
                   Responsible for the entire engineering budget, staffing, and resourcing. Strong focus on meeting budget goals through increased growth and cost reduction. 
                 </li>
                 <li>
-                  Started the integration with our sister company, Fuga, to simplify CDBaby's workload while taking advantages of best in class services provided by Fuga.
+                  Started the integration with our sister company, Fuga, to simplify CDBaby's workload while taking advantage of best in class services provided by Fuga.
                 </li>
                 <li>
                    Launched multiple high-value partner integrations including mastering and video creation increasing the value of our service to customers and providing new revenue streams.
@@ -557,7 +794,6 @@
               <div class="exp-tags">
                 <span class="tag">Multi-Brand Leadership</span>
                 <span class="tag">Remote Team Management</span>
-                <span class="tag">Planning Budgeting & Forecasting</span>
                 <span class="tag">Budgeting & Forecasting</span>
                 <span class="tag">Cookie Compliance</span>
               </div>
@@ -570,11 +806,11 @@
               <p class="exp-company">CD Baby</p>
               <p class="exp-role">Director of Web Development</p>
               <p class="exp-desc">
-                Focused primarily on the over-arching goals of the engineering team while mentoring leaders across multiple teams.
+                Expanded leadership scope across two brands while shifting focus from day-to-day execution to organizational strategy, team growth, and cross-team alignment.
               </p>
               <ul class="exp-bullets">
                 <li>
-                  Managed four distinct teams over a span of two different brands focusing on cross-team collaboration and knowledge sharing
+                  Managed four distinct teams over a span of two different brands focusing on cross-team collaboration and knowledge sharing.
                 </li>
                 <li>
                   Built a plan to break apart the monolith structure of the CD Baby application and begin to separate it into a mixture of APIs, microservices, 
@@ -582,7 +818,7 @@
                 </li>
                 <li>
                   As part of the decoupling, led the migration of moving the marketing site from an internal app to WPEngine. 
-                  The outcome was reduced time and effort for marketing to make changes while removing large amounts of work from the engineering UI team
+                  The outcome was reduced time and effort for marketing to make changes while removing large amounts of work from the engineering UI team.
                 </li>
                 <li>
                   Partnered with a local code school, Epicodus, to start an internship program at CDBaby. During this time, we took on six different interns, two of which converted
@@ -610,9 +846,8 @@
               <p class="exp-company">CD Baby</p>
               <p class="exp-role">Manager of Web Development</p>
               <p class="exp-desc">
-                While still under the same parent company moved from the Discmakers team to the CDBaby team to manage a newly formed team focused on the CDBaby platform migration. This 
-                migration included the customer facing website and storefront and the musician application for signing up to sell music direct to fans and through streaming and download
-                services. This migration was a critical part of the overall strategy to modernize the platform and set the stage for future growth and scalability.
+                  Moved from Disc Makers to lead a newly formed team responsible for the full migration and relaunch of the CD Baby platform including both the customer-facing storefront and the musician 
+                  application and setting the foundation for future growth.
               </p>
               <ul class="exp-bullets">
                 <li>Relaunched the CD Baby platform in nine months. Designed and implemented an architecture that was scalable and highly available utilizing load balancing to distribute the load.</li>
@@ -630,7 +865,7 @@
                   distribution of the workload.
                 </li>
                 <li>
-                  Led the development efforts on launching BookBaby, and built its distribution system, adapted from CD Baby's audio distribution system, to send clients's books to e-book stores like 
+                  Led the development efforts on launching BookBaby, and built its distribution system, adapted from CD Baby's audio distribution system, to send client's books to e-book stores like 
                   Amazon Kindle and Apple Books.
                 </li>
                 <li>
@@ -663,8 +898,7 @@
               <p class="exp-company">Disc Makers</p>
               <p class="exp-role">Lead Application Developer</p>
               <p class="exp-desc">
-                Progressed from junior developer to lead, defining code standards, workflow, and
-                development philosophy.
+                Grew from junior developer to team lead, taking ownership of code standards, development philosophy, and the team's most impactful client-facing tools.
               </p>
               <ul class="exp-bullets">
                 <li>
@@ -703,9 +937,8 @@
               <p class="exp-company">SNIP</p>
               <p class="exp-role">Applications Developer</p>
               <p class="exp-desc">
-                Developed internal applications for a regional ISP expanding into telecom -
-                including a client management app migrated from VB6 to C#, a workflow management
-                system, and a SQL-powered Excel reporting engine.
+                Started my professional software career building internal tooling and client-facing applications for a regional ISP in the midst of expanding into telecom — learning 
+                the fundamentals that would shape the rest of my engineering career.
               </p>
               <ul class="exp-bullets">
                 <li>
@@ -748,6 +981,7 @@
           <div class="skill-item">Product Management</div>
           <div class="skill-item">Privacy & Compliance</div>
           <div class="skill-item">AI-Assisted Development</div>
+          <div class="skill-item">Cross-Functional Alignment</div>
         </div>
       </div>
     </section>
@@ -783,10 +1017,10 @@
             <h3>TableTop Trades</h3>
             <p>
                 A platform for organizing tabletop trades in the board game hobby. Expected to enter public beta in March of 2026, the
-                platform is built my a small team of three with the hopes of demystifying the math trade process.
+                platform is built by a small team of three with the hopes of demystifying the math trade process.
             </p>
             <ul class="exp-bullets">
-                <li>Utilizing modern web development practices, frameworks, and vibe-coding with Claude to accelerate development..</li>
+                <li>Utilizing modern web development practices, frameworks, and vibe-coding with Claude to accelerate development.</li>
                 <li>Built on C#, .net core, sql server, and azure containers to provide a scalable, lightweight, and cost-effective platform.</li>
                 <li>Developed with distinct production and development CI/CD pipelines.</li>
             </ul> 
@@ -813,6 +1047,46 @@
               outdoor adventures, and community service. In addition, I serve as a merit badge counselor for programming, game design, chess, and woodworking merit badges.
             </p>
           </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+         AWARDS & RECOGNITION
+         Includes formal awards and a pull quote
+         testimonial from a colleague / direct report.
+    ============================================= -->
+    <section class="section">
+      <div class="container">
+        <p class="section-label">Awards &amp; Recognition</p>
+
+        <div class="awards-grid">
+
+          <!-- Formal award entry -->
+          <div class="award-entry">
+            <div class="award-icon">⚡</div>
+            <div>
+              <p class="award-name">Spark Plug Award, 2024</p>
+              <p class="award-org">Scouting America, Spirit Lake District</p>
+              <p class="award-desc">
+                  The Spark Plug Award is presented to a Unit, District, or Council Scout leader who has made positive differences in a short amount of time. 
+                  The award exemplifies the Scout Oath and Law in their daily life and goes above and beyond the call of duty to spark the enthusiasm most in their unit. 
+                  The nominee must be a registered Adult Leader and a recent addition to unit or district leadership, having made an important contribution to the success of the unit or district. 
+              </p>
+            </div>
+          </div>
+
+          <!-- Pull quote / testimonial -->
+          <blockquote class="testimonial">
+            <p class="testimonial-quote">
+              "Christopher fostered a culture of trust, collaboration, and creative problem‑solving. He believed in his teams, and that confidence inspired people to take 
+              ownership and deliver their best work. He is direct, trustworthy, and calm under pressure — qualities that made him a stabilizing force during times of change.
+            </p>
+            <footer class="testimonial-attr">
+              — Patrick Billingsley &amp; , UI Development Manager, CD Baby
+            </footer>
+          </blockquote>
 
         </div>
       </div>
