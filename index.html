@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,8 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap"
-    rel="stylesheet"
-  />
+    rel="stylesheet" />
 
   <style>
     /* =============================================
@@ -20,27 +20,41 @@
        defined here for easy theming.
     ============================================= */
     :root {
-      --bg-deep:      #0d1117;   /* darkest background */
-      --bg-card:      #161b22;   /* card / section background */
-      --bg-line:      #21262d;   /* subtle divider color */
-      --accent:       #e8a045;   /* warm amber — distinctive, non-purple */
-      --accent-dim:   #c4822a;
+      --bg-deep: #0d1117;
+      /* darkest background */
+      --bg-card: #161b22;
+      /* card / section background */
+      --bg-line: #21262d;
+      /* subtle divider color */
+      --accent: #e8a045;
+      /* warm amber — distinctive, non-purple */
+      --accent-dim: #c4822a;
       --text-primary: #e6edf3;
-      --text-muted:   #adbac7;  /* bumped up from #8b949e — easier on the eyes */
-      --text-dim:     #768390;  /* dates & secondary info — was #484f58, now much more readable */
+      --text-muted: #adbac7;
+      /* bumped up from #8b949e — easier on the eyes */
+      --text-dim: #768390;
+      /* dates & secondary info — was #484f58, now much more readable */
       --font-display: 'Playfair Display', Georgia, serif;
-      --font-body:    'DM Sans', sans-serif;
-      --max-width:    860px;
-      --radius:       6px;
-      --transition:   0.25s ease;
+      --font-body: 'DM Sans', sans-serif;
+      --max-width: 860px;
+      --radius: 6px;
+      --transition: 0.25s ease;
     }
 
     /* =============================================
        RESET & BASE
     ============================================= */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: var(--font-body);
@@ -102,7 +116,8 @@
 
     .hero-name {
       font-family: var(--font-display);
-      font-size: clamp(2.8rem, 7vw, 5rem); /* fluid responsive type sizing */
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      /* fluid responsive type sizing */
       font-weight: 900;
       line-height: 1.05;
       letter-spacing: -0.02em;
@@ -187,7 +202,9 @@
       border-bottom: 1px solid var(--bg-line);
     }
 
-    .section:last-child { border-bottom: none; }
+    .section:last-child {
+      border-bottom: none;
+    }
 
     /* Small all-caps amber label above each section's content */
     .section-label {
@@ -248,19 +265,22 @@
     /* Bullet list for experience entries.
        Uses a custom amber square marker instead of the default browser bullet. */
     .exp-bullets {
-      list-style: none;          /* remove default browser bullets */
+      list-style: none;
+      /* remove default browser bullets */
       padding: 0;
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 8px;                  /* breathing room between each bullet */
+      gap: 8px;
+      /* breathing room between each bullet */
     }
 
     .exp-bullets li {
       font-size: 0.9rem;
       color: var(--text-muted);
       line-height: 1.75;
-      padding-left: 18px;        /* indent text to clear the custom marker */
+      padding-left: 18px;
+      /* indent text to clear the custom marker */
       position: relative;
     }
 
@@ -269,11 +289,13 @@
       content: '';
       position: absolute;
       left: 0;
-      top: 0.6em;                /* vertically center against the first line */
+      top: 0.6em;
+      /* vertically center against the first line */
       width: 5px;
       height: 5px;
       background: var(--accent);
-      border-radius: 1px;        /* slight rounding for a softer square */
+      border-radius: 1px;
+      /* slight rounding for a softer square */
       opacity: 0.7;
     }
 
@@ -339,7 +361,9 @@
       transition: border-color var(--transition);
     }
 
-    .side-card:hover { border-color: var(--accent); }
+    .side-card:hover {
+      border-color: var(--accent);
+    }
 
     .side-card-icon {
       font-size: 1.4rem;
@@ -370,7 +394,9 @@
       font-weight: 500;
     }
 
-    .side-card a:hover { text-decoration: underline; }
+    .side-card a:hover {
+      text-decoration: underline;
+    }
 
     /* =============================================
        AWARDS & RECOGNITION
@@ -434,7 +460,8 @@
     .testimonial {
       background: var(--bg-card);
       border: 1px solid var(--bg-line);
-      border-left: 3px solid var(--accent); /* accent left border for visual weight */
+      border-left: 3px solid var(--accent);
+      /* accent left border for visual weight */
       border-radius: var(--radius);
       padding: 24px;
       position: relative;
@@ -442,7 +469,8 @@
 
     /* Large decorative opening quotation mark */
     .testimonial::before {
-      content: '\201C';            /* left double quotation mark */
+      content: '\201C';
+      /* left double quotation mark */
       font-family: var(--font-display);
       font-size: 4rem;
       color: var(--accent);
@@ -459,7 +487,8 @@
       font-size: 0.95rem;
       color: var(--text-muted);
       line-height: 1.8;
-      padding-top: 20px;   /* clear the large decorative quote mark */
+      padding-top: 20px;
+      /* clear the large decorative quote mark */
     }
 
     .testimonial-attr {
@@ -486,6 +515,7 @@
         grid-template-columns: 1fr;
       }
     }
+
     .edu-entry {
       display: flex;
       justify-content: space-between;
@@ -538,18 +568,25 @@
        RESPONSIVE — Mobile (< 640px)
     ============================================= */
     @media (max-width: 640px) {
+
       /* Collapse the date + content two-column layout to single column */
       .exp-entry {
         grid-template-columns: 1fr;
         gap: 4px;
       }
 
-      .exp-date { font-size: 0.72rem; }
+      .exp-date {
+        font-size: 0.72rem;
+      }
 
       /* Stack side project cards vertically */
-      .side-grid { grid-template-columns: 1fr; }
+      .side-grid {
+        grid-template-columns: 1fr;
+      }
 
-      .hero { padding: 48px 0 40px; }
+      .hero {
+        padding: 48px 0 40px;
+      }
     }
 
     /* =============================================
@@ -574,14 +611,15 @@
 
       /* Override all CSS variables to light equivalents */
       :root {
-        --bg-deep:      #ffffff;
-        --bg-card:      #f5f5f5;
-        --bg-line:      #dddddd;
-        --accent:       #b07020;   /* darker amber so it's legible on white */
-        --accent-dim:   #8a5510;
+        --bg-deep: #ffffff;
+        --bg-card: #f5f5f5;
+        --bg-line: #dddddd;
+        --accent: #b07020;
+        /* darker amber so it's legible on white */
+        --accent-dim: #8a5510;
         --text-primary: #111111;
-        --text-muted:   #333333;
-        --text-dim:     #666666;
+        --text-muted: #333333;
+        --text-dim: #666666;
       }
 
       /* Remove background noise texture */
@@ -648,27 +686,29 @@
         gap: 0;
       }
 
-      .exp-entry + .exp-entry {
+      .exp-entry+.exp-entry {
         margin-top: 24px;
       }
 
       /* Ensure tags sit flush below the bullets with no extra space */
       .exp-tags {
         margin-top: 8px;
-      }     
-      
+      }
+
       /* Force bullet markers to show in print.
       Browsers strip CSS backgrounds by default, so we switch
       to a border-based square that always renders. */
       .exp-bullets li::before {
         background: transparent;
-        border: 2px solid #b07020;  /* matches the darkened amber used for print */
+        border: 2px solid #b07020;
+        /* matches the darkened amber used for print */
         width: 6px;
         height: 6px;
       }
-    }    
+    }
   </style>
 </head>
+
 <body>
 
   <!-- =============================================
@@ -683,44 +723,47 @@
       </h1>
 
       <p class="hero-title">
-        Building High-Performing Teams · Outcomes Over Output
+        Building High-Performing Loyal Teams · Outcomes Over Output
       </p>
 
       <p class="hero-summary">
-        Engineering leader with over 17 years of experience building, growing, and leading teams. With a low-churn rate of under 5% across multiple teams, I have a track record
-        of delivering with highly performing teams that focus on the outcome, not the output. With experience developing and architecting code, I bridge hands-on technical work and 
-        strategic leadership with a keen eye on keeping costs down and outcomes high. I have a strong focus on cross-team collaboration and communication, and I pride myself on 
-        building strong relationships with my teams and stakeholders.
+        Engineering leader with over 17 years of experience building, growing, and leading engieering teams. With a
+        low-churn rate of under 5% across multiple teams, I have a track record of delivering with highly performing
+        teams that focus on the outcome, not the output. With experience developing and architecting code, I bridge
+        hands-on technical work and strategic leadership with a keen eye on keeping costs down. I focus on cross-team
+        collaboration, communication, and building strong relationships with my teams, peers, and stakeholders.
       </p>
 
       <!-- Contact / social links with inline SVG icons (no external icon library needed) -->
       <div class="hero-links">
 
         <a href="mailto:ccericola@gmail.com">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="4" width="20" height="16" rx="2"/>
-            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
           </svg>
           ccericola@gmail.com
         </a>
 
         <a href="https://www.linkedin.com/in/ccericola" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-            <rect x="2" y="9" width="4" height="12"/>
-            <circle cx="4" cy="4" r="2"/>
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+            <rect x="2" y="9" width="4" height="12" />
+            <circle cx="4" cy="4" r="2" />
           </svg>
           LinkedIn
         </a>
 
         <a href="javascript:window.print()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 6 2 18 2 18 9"/>
-            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
-            <rect x="6" y="14" width="12" height="8"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="6 9 6 2 18 2 18 9" />
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+            <rect x="6" y="14" width="12" height="8" />
           </svg>
           Print / Save PDF
-        </a>      
+        </a>
       </div>
     </div>
   </header>
@@ -737,30 +780,39 @@
         <div class="exp-list">
 
           <div class="exp-entry">
-            <span class="exp-date">Jan 2025 — Present</span>
+            <span class="exp-date">Feb 2009 — Present</span>
             <div>
               <p class="exp-company">CD Baby</p>
               <p class="exp-role">Senior Vice President of Engineering</p>
+              <p class="exp-date">Jan 2025 — Present</p>
               <p class="exp-desc">
-                  Led engineering at the senior leadership level through a period of transition, driving platform modernization, expanding the team with near-shore partners, and setting the 
-                  technical direction for the next generation of the CD Baby platform.
+                Led engineering at the senior leadership level through a period of transition, driving platform
+                modernization, expanding the team with near-shore partners, and setting the
+                technical direction for the next generation of the CD Baby platform.
               </p>
               <ul class="exp-bullets">
                 <li>
-                  During a period of organization transition, ran the product team for six months while recruiting for a new product leader. This included
-                  managing the team's roadmap, prioritization, and day-to-day work while ensuring alignment with the engineering team and overall company goals.
+                  During a period of transition, I over saw the product team for 6 months while assisting with
+                  recruiting for a new product leader providing perspective into a new role and how to best support them
+                  product teams from an engineering perspective.
                 </li>
                 <li>
-                  Led the development and execution of a rebuild of the CDBaby platform with a strong focus on modernization. This included defining the architecture, technology stack, 
-                  and development process to ensure a scalable and maintainable platform for the future. This involved migrating from bare metal to containers and moving our CI/CD pipelines
-                  from Azure DevOps to GitHub.
+                  Led the development and execution of a rebuild of the CDBaby platform with a strong focus on
+                  modernization. This included defining the architecture, technology stack, and development process to
+                  ensure a scalable and maintainable platform for the future. This involved migrating from bare metal to
+                  containers and moving our CI/CD pipelines from Azure DevOps to GitHub.
                 </li>
                 <li>
-                  Brought in external development near-shore development teams to augment the platform modernization and design. This allowed internal developers to focus on building the 
-                  core infrastructure and architecture while the near-shore team focused on building out specific features and components. This was a highly successful partnership that allowed 
-                  us to accelerate our roadmap while maintaining high quality and strong communication.
+                  Brought in external near-shore development teams to augment the platform modernization and design.
+                  This was a cost savings of around 50% compared to bringing in the equivalent amount of talents. This
+                  allowed internal developers to focus on building the core infrastructure and architecture while the
+                  near-shore team focused on building out specific features and components.
                 </li>
-              </ul>              
+                <li>
+                  Led the progress of migrartion to utilizing agentic AI tooling in our daily workload with both V0 and
+                  Github Copilot. Engineers reported saving between 20-30% of their time with less redundant work.
+                </li>
+              </ul>
               <div class="exp-tags">
                 <span class="tag">Executive Leadership</span>
                 <span class="tag">Cross-functional Alignment</span>
@@ -771,29 +823,33 @@
           </div>
 
           <div class="exp-entry">
-            <span class="exp-date">Aug 2020 — Apr 2025</span>
+            <span class="exp-date"></span>
             <div>
-              <p class="exp-company">CD Baby</p>
               <p class="exp-role">Vice President of Engineering</p>
+              <p class="exp-date">Aug 2020 — Jan 2025</p>
               <p class="exp-desc">
-                Took on expanded ownership across four distinct brands — CD Baby, Hearnow, Show.co, and Soundrop — leading engineering teams of varying sizes and technology stacks with a continued
-                focus on cross-team collaboration. 
+                Took on expanded ownership across four distinct brands — CD Baby, Hearnow, Show.co, and Soundrop —
+                leading engineering teams of varying sizes and technology stacks with a continued
+                focus on cross-team collaboration.
               </p>
               <ul class="exp-bullets">
                 <li>
-                  Augmented staff with near-shore contractors to help with capacity and specific skill needs. This included defining the statement of work, negotiating terms, 
-                  and managing the ongoing relationship.
+                  Augmented staff with near-shore contractors to help with capacity and specific skill needs saving
+                  roughly 35% over the cost of local engineers.
                 </li>
                 <li>
-                  Responsible for the entire engineering budget, staffing, and resourcing. Strong focus on meeting budget goals through increased growth and cost reduction. Outside of staffing
-                  costs, I was able to limit budget increases to 3% year over year.
+                  Responsible for the entire engineering budget, staffing, and resourcing. Strong focus on meeting
+                  budget goals through increased growth and cost reduction. Outside of staffing costs, I was able to
+                  limit budget increases to 3% year over year.
                 </li>
                 <li>
-                  Started the integration with our sister brands in the Downtown Music Holdings family, including Fuga and Found. The goal was to utilize each company for its best in class
-                  services and provide a better overall experience for customers. 
+                  Started the integration with our sister brands in the Downtown Music Holdings family, including Fuga
+                  and Found. The goal was to utilize each company for its best in class services and provide a better
+                  overall experience for customers.
                 </li>
                 <li>
-                  Served as one of two company-wide privacy compliance leads, ensuring adherence with GDPR and domestic privacy regulations.
+                  Served as one of two company-wide privacy compliance leads, ensuring adherence with GDPR and domestic
+                  privacy regulations.
                 </li>
               </ul>
               <div class="exp-tags">
@@ -801,41 +857,48 @@
                 <span class="tag">Remote Team Management</span>
                 <span class="tag">Budgeting & Forecasting</span>
                 <span class="tag">Cookie Compliance</span>
+                <span class="tag">OKRs</span>
+
               </div>
             </div>
           </div>
 
           <div class="exp-entry">
-            <span class="exp-date">Aug 2015 — Aug 2020</span>
+            <span class="exp-date"></span>
             <div>
-              <p class="exp-company">CD Baby</p>
               <p class="exp-role">Director of Web Development</p>
+              <p class="exp-date">Aug 2015 — Aug 2020</p>
               <p class="exp-desc">
-                Expanded leadership scope across two brands while shifting focus from day-to-day execution to organizational strategy, team growth, and cross-team alignment. Between the four 
-                teams and two brands, oversaw a team of 20 people including UI, QA, backend development, and HearNow full stack teams. During this
-                period, the churn rate was less than 5%.
+                Managed the UI, QA, backend development, and HearNow full stack teams building a a strong culture of
+                communication, collaboration, and continuous improvement. With over 20 people reporting to me, the churn
+                rate remained less than 5%.
               </p>
               <ul class="exp-bullets">
                 <li>
-                  Managed the UI, QA, backend development, and HearNow full stack teams. Each time with their own structure and needs, I worked to help built a strong culture of communication, 
-                  collaboration, and continuous improvement. The total team size was 20 people this time, and during this time, the churn was less than 5 percent.                   
+                  Architected and led the separation of CD Baby's monolithic application into a more modular
+                  architecture. This included defining the overall strategy, identifying the right services to break
+                  out, and leading the development efforts on the first few services. Time to test and publish were
+                  reduced by at least 10% and the new architecture set the foundation for future growth and scalability.
                 </li>
                 <li>
-                  Architected and led the separation of CD Baby's monolithic application into a more modular architecture. This included defining the overall strategy, 
-                  identifying the right services to break out, and leading the development efforts on the first few services. Time to test and publish were reduced by at least 10% and 
-                  the new architecture set the foundation for future growth and scalability.
+                  As part of the decoupling, led the migration of moving the marketing site from an internal app to
+                  WPEngine. This removed the need for engineering involvement in marketing content, caused zero-downtime
+                  during the migration, and reduced engineering UI workload by 25% letting the team focus on more
+                  impactful work. </li>
+                <li>
+                  Partnered with a local code school, Epicodus, to start an internship program at CDBaby. During this
+                  time, we took on six different interns, two of which converted to full time employees.
                 </li>
                 <li>
-                  As part of the decoupling, led the migration of moving the marketing site from an internal app to WPEngine. This removed the need for engineering involvement
-                  in marketing content, caused zero-downtime during the migration, and reduced engineering UI workload by 25% letting the team focus on more impactful work.
-                </li>
-                <li>
-                  Partnered with a local code school, Epicodus, to start an internship program at CDBaby. During this time, we took on six different interns, two of which converted
+                  Partnered with a local code school, Epicodus, to start an internship program at CDBaby. During this
+                  time, we took on six different interns, two of which converted
                   to full time employees.
                 </li>
                 <li>
-                  Operated as the scrum champion during this time applying my skills with scrum and other agile methodologies helping guide the refinement, planning, and review process. This 
-                  promoted a culture of communication with stakeholders and rapid feedback loops to ensure the right products were being built.
+                  Operated as the scrum champion during this time applying my skills with scrum and other agile
+                  methodologies helping guide the refinement, planning, and review process. This promoted a culture of
+                  communication with stakeholders and rapid feedback loops to ensure the right products were being
+                  built.
                 </li>
               </ul>
               <div class="exp-tags">
@@ -851,56 +914,68 @@
           </div>
 
           <div class="exp-entry">
-            <span class="exp-date">Feb 2009 — Aug 2015</span>
+            <span class="exp-date"></span>
             <div>
-              <p class="exp-company">CD Baby</p>
-              <p class="exp-role">Manager of Web Development</p>
+              <p class="exp-role">Manager of Web Development, </p>
+              <p class="exp-date">Feb 2009 — Aug 2015</p>
               <p class="exp-desc">
-                  Moved from Disc Makers to lead a newly formed team responsible for the full migration and relaunch of the CD Baby platform including both the customer-facing storefront and the musician 
-                  application and setting the foundation for future growth.
+                Moved internally from Disc Makers to CD Baby to lead a newly formed team responsible for the full
+                migration and relaunch of the CD Baby platform including both the customer-facing storefront and the
+                musician application. This migration was completed on-time, on-budget, and with future expansion in
+                mind.
               </p>
               <ul class="exp-bullets">
-                <li>Relaunched the CD Baby platform in nine months. Designed and implemented an architecture that was scalable and highly available utilizing load balancing to distribute the load.</li>
                 <li>
-                  Architected and developed a delivery system for delivering audio, image, and metadata assets to partners, such as Spotify, that ran off an automated queuing system. It
-                  was developed to be an extendable platform and included centralized management handling volumes of thousands of deliveries per day.
-                </li>  
-                <li>
-                  Created the first QA group within CD Baby with a single engineer and grew it into a team of three people during the first five years. By involving QA in the development lifecycle, 
-                  it improved overall quality and reduced defects in production. This team, under my leadership, built manual and automated testing processes that caught defects early and allowed for 
-                  faster releases with confidence.                   
+                  Relaunched the CD Baby platform in nine months. Designed and implemented an architecture that was
+                  scalable and highly available utilizing load balancing to distribute the load.
                 </li>
                 <li>
-                  Created the initial on-call rotation and process for the web development team. This included defining standard work for known issues, escalation guides for complex issues, and an equitable
-                  distribution of the workload.
+                  Designed and developed an automated delivery system for album assets and metadata to partners, such as
+                  Spotify and Apple, delivering 1000s of releases per day. The self-healing system reduced partner
+                  complaints by 50% and increased our delivery volume by 100%. It currently handles over 20 partners
+                  with their own distinct requirements.
                 </li>
                 <li>
-                  Led the development efforts on launching BookBaby, and built its distribution system, adapted from CD Baby's audio distribution system, to send client's books to e-book stores like 
-                  Amazon Kindle and Apple Books.
+                  Created the first QA team within CD Baby with a single engineer and grew it into a team of three
+                  people during the first five years. This reduced our post-production defects by over 75% and improved
+                  engineer produciivity by at least 25%.
                 </li>
                 <li>
-                  Hired multiple engineers from within CDBaby identifying people who had core skills that could be applied to the engineering work, training them, and helping them grow into their new career.
-                  This was a highly successful way to grow talent and also helped build a strong culture of learning and development within the organization. 
+                  Created the initial on-call rotation for the web development team. This included defining standard
+                  work for known issues and escalation guides for complex issues, leading to the 80% reduction in
+                  incident response time and recovery.
                 </li>
                 <li>
-                  Planned and led the migration from using TFVC with an on-prem TFS server to git in Azure DevOps including providing training to the team on best usage patterns and setting the groundwork for
-                  future CI/CD toolings.
+                  Led the development efforts on launching BookBaby, and built its distribution system, adapted from CD
+                  Baby's audio distribution system, to send client's books to e-book stores like Amazon Kindle and Apple
+                  Books.
                 </li>
                 <li>
-                  Managed weekly 1:1s with all employees helping set expectations and goals. 
+                  Hired multiple engineers from within CDBaby identifying people who had core skills that could be
+                  applied to the engineering work, training them, and helping them grow into their new career. This was
+                  a highly successful way to grow talent and also helped build a strong culture of learning and
+                  development within the organization.
                 </li>
                 <li>
-                  During these six years, the team grew from four contributors to over twelve and during this time, the churn was less than five percent.
+                  Migrated from on-prem TFVC to using AzureDevOps with git repos and CI/CD automation . Publish and
+                  deployment complexity reduced significantly. Overall, this resulted in reducing the amount of
+                  publishes rolled by back 40%.
                 </li>
-              </ul>               
+                <li>
+                  Managed weekly 1:1s with all employees helping set expectations and goals.
+                </li>
+                <li>
+                  During the 6 years I held this title, the team grew from 4 contributors to over 12 while maintaining a
+                  churn rate of less than 5%.
+                </li>
+              </ul>
               <div class="exp-tags">
                 <span class="tag">Continuous Integration and Continuous Delivery (CI/CD)</span>
                 <span class="tag">Agile Methodologies</span>
                 <span class="tag">Technical Leadership</span>
-                <span class="tag">Interview Management</span>
-                <span class="tag">Git</span>
                 <span class="tag">Azure Devops / Azure Cloud</span>
                 <span class="tag">Mentoring and Career Development</span>
+                <span class="tag">On-call and Incident Management</span>
               </div>
             </div>
           </div>
@@ -910,31 +985,34 @@
             <div>
               <p class="exp-company">Disc Makers</p>
               <p class="exp-role">Lead Application Developer</p>
+              <p class="exp-date">Jan 2007 — Feb 2009</p>
               <p class="exp-desc">
-                Grew from junior developer to team lead, taking ownership of code standards, development philosophy, and the team's most impactful client-facing tools.
+                Grew from junior developer to team lead, taking ownership of code standards, development philosophy, and
+                the team's most impactful client-facing tools.
               </p>
               <ul class="exp-bullets">
                 <li>
-                  Built the web-based CD/DVD template designer in C#, JavaScript, and Ajax. This tool provided users a WSIWYG experience for designing cover and disc artwork.
-                </li>
+                  Built the web-based CD/DVD template designer in C#, JavaScript, and Ajax providing users with a WSIWYG
+                  experience for product design. This eliminated our need for a 3rd party partner decreased costs by
+                  over 30%. </li>
                 <li>
                   Rebuilt the core class libraries using a custom ORM, reducing the codebase by over 25%.
                 </li>
                 <li>
-                  Post migration of CDBaby, lead the development efforts for the CDBaby platform converting it into a more modern stack and UI while integrating it with the existing
-                  Microsoft Dynamics AX 4.0 platform.
+                  Post migration of CDBaby, lead the development efforts for the CDBaby platform converting it into a
+                  more modern stack and UI while integrating it with the existing Microsoft Dynamics AX 4.0 platform.
                 </li>
                 <li>
-                  Defined code standards and best practices to help promote uniformity in code.
-                   These standards improved performance by reducing the complexity in debugging and understanding of what people's intent were.
-                  </li>
+                  Defined code standards and best practices to help promote uniformity in code. These standards improved
+                  performance by reducing the complexity in debugging and understanding of what people's intent were.
+                </li>
                 <li>
-                  Interviewed candidates, and helped increase the team from four engineers to six.
+                  Interviewed candidates, and helped increase the team from 4 engineers by 50%.
                 </li>
                 <li>
                   Mentored incoming engineers and interns in code practices, problem solving, and debugging.
                 </li>
-              </ul> 
+              </ul>
               <div class="exp-tags">
                 <span class="tag">C#</span>
                 <span class="tag">JavaScript</span>
@@ -950,17 +1028,19 @@
               <p class="exp-company">SNIP</p>
               <p class="exp-role">Applications Developer</p>
               <p class="exp-desc">
-                Started my professional software career building internal tooling and client-facing applications for a regional ISP in the midst of expanding into telecom — learning 
+                Started my professional software career building internal tooling and client-facing applications for a
+                regional ISP in the midst of expanding into telecom — learning
                 the fundamentals that would shape the rest of my engineering career.
               </p>
               <ul class="exp-bullets">
                 <li>
-                  Maintained the existing VB6 platform while helping architect and develop the new C# platform that would combine the two sides of the business.
+                  Maintained the existing VB6 platform while helping architect and develop the new C# platform that
+                  would combine the two sides of the business.
                 </li>
                 <li>
                   Developed tools to import telecom EDI files and process them into a billing engine.
                 </li>
-              </ul> 
+              </ul>
               <div class="exp-tags">
                 <span class="tag">C#</span>
                 <span class="tag">SQL Server</span>
@@ -1011,15 +1091,15 @@
             <div class="side-card-icon">🌲</div>
             <h3>Scout Tree Recycling Coordinator</h3>
             <p>
-              Organizes 24 scouting units across 61 areas in Clark County and Longview, WA
-              for an annual Scouting America Christmas tree recycling event keeping trees out of landfills. Builds and maintains
-              ScoutTreeRecycling.com — an app serving 1,000+ residents per season.
+              Since 2023, ScoutTreeRecycling organizes 24 scouting units across 61 areas in Clark County, WA and beyond for an annual Scouting America Christmas tree recycling event keeping trees out of landfills by
+              replacing the manual process of connecting residents with scouting units and turning it into a self-service experience for over 1000 residents each year.
             </p>
-            <ul class="exp-bullets">
-                <li>Maintained no downtime during the tree recycling season since its inception in 2023.</li>
-                <li>Reimagined an old manual process of connecting residents with units into a self-service focused experience.</li>
-                <li>Developed in C#, .net core, and sql server. Brings together google maps integration and geolocation tools.</li>
-            </ul> 
+            <div class="exp-tags">
+              <span class="tag">C# / .net core</span>
+              <span class="tag">Azure SQL</span>
+              <span class="tag">Azure Web Apps</span>
+              <span class="tag">Google Maps</span>
+            </div>
             <a href="https://ScoutTreeRecycling.com" target="_blank" rel="noopener">
               ScoutTreeRecycling.com →
             </a>
@@ -1029,14 +1109,18 @@
             <div class="side-card-icon">🎲</div>
             <h3>TableTop Trades</h3>
             <p>
-                A platform for organizing tabletop trades in the board game hobby. Expected to enter public beta in March of 2026, the
-                platform is built by a small team of three with the hopes of demystifying the math trade process.
+              A platform for organizing tabletop trades in the board game hobby. Expected to enter public beta in March
+              of 2026, the
+              platform is built by a small team of three with the hopes of demystifying the math trade process.
             </p>
-            <ul class="exp-bullets">
-                <li>Utilizing modern web development practices, frameworks, and vibe-coding with Claude to accelerate development.</li>
-                <li>Built on C#, .net core, sql server, and azure containers to provide a scalable, lightweight, and cost-effective platform.</li>
-                <li>Developed with distinct production and development CI/CD pipelines.</li>
-            </ul> 
+            <div class="exp-tags">
+              <span class="tag">C# / .net core</span>
+              <span class="tag">Azure SQL</span>
+              <span class="tag">Azure Container Apps</span>
+              <span class="tag">Azure Container Jobs</span>
+              <span class="tag">Azure KeyVault</span>
+              <span class="tag">Claude Code</span>
+            </div>
             <a href="https://tabletoptrades.com/" target="_blank" rel="noopener">
               TableTopTrades.com →
             </a>
@@ -1052,12 +1136,14 @@
             </p>
           </div>
 
-                    <div class="side-card">
+          <div class="side-card">
             <div class="side-card-icon">⚜</div>
             <h3>Troop 479/5479 of Vancouver, WA</h3>
             <p>
-              Volunteering as an assistant scoutmaster since 2022 for a linked boy and girl troop in the Vancouver, WA area. Supporting the growth and development of youth through mentorship, 
-              outdoor adventures, and community service. In addition, I serve as a merit badge counselor for programming, game design, chess, and woodworking merit badges.
+              Volunteering as an assistant scoutmaster since 2022 for a linked boy and girl troop in the Vancouver, WA
+              area. Supporting the growth and development of youth through mentorship,
+              outdoor adventures, and community service. In addition, I serve as a merit badge counselor for
+              programming, game design, chess, and woodworking merit badges.
             </p>
           </div>
 
@@ -1083,9 +1169,12 @@
               <p class="award-name">Spark Plug Award, 2024</p>
               <p class="award-org">Scouting America, Spirit Lake District</p>
               <p class="award-desc">
-                  The Spark Plug Award is presented to a Unit, District, or Council Scout leader who has made positive differences in a short amount of time. 
-                  The award exemplifies the Scout Oath and Law in their daily life and goes above and beyond the call of duty to spark the enthusiasm most in their unit. 
-                  The nominee must be a registered Adult Leader and a recent addition to unit or district leadership, having made an important contribution to the success of the unit or district. 
+                The Spark Plug Award is presented to a Unit, District, or Council Scout leader who has made positive
+                differences in a short amount of time.
+                The award exemplifies the Scout Oath and Law in their daily life and goes above and beyond the call of
+                duty to spark the enthusiasm most in their unit.
+                The nominee must be a registered Adult Leader and a recent addition to unit or district leadership,
+                having made an important contribution to the success of the unit or district.
               </p>
             </div>
           </div>
@@ -1093,8 +1182,10 @@
           <!-- Pull quote / testimonial -->
           <blockquote class="testimonial">
             <p class="testimonial-quote">
-              "Christopher fostered a culture of trust, collaboration, and creative problem‑solving. He believed in his teams, and that confidence inspired people to take 
-              ownership and deliver their best work. He is direct, trustworthy, and calm under pressure — qualities that made him a stabilizing force during times of change.
+              "Christopher fostered a culture of trust, collaboration, and creative problem‑solving. He believed in his
+              teams, and that confidence inspired people to take
+              ownership and deliver their best work. He is direct, trustworthy, and calm under pressure — qualities that
+              made him a stabilizing force during times of change.
             </p>
             <footer class="testimonial-attr">
               — Patrick Billingsley &amp; , UI Development Manager, CD Baby
@@ -1130,4 +1221,5 @@
   </footer>
 
 </body>
+
 </html>
